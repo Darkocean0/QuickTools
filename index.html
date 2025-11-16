@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quick Tools — Fast & Minimal Web Utilities</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <a class="brand" href="#">Quick Tools</a>
+      <nav>
+        <button id="startBtn" class="btn">Explore Tools</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Essential Web Tools, Lightning Fast.</h1>
+        <p>Discover a collection of free, lightweight online calculators and utilities designed for speed and simplicity. No reloads, fully mobile-friendly, and always ready when you are.</p>
+        <div class="cta">
+          <button id="openTools" class="btn large">Get Started Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="ads container">
+      <div class="adspace adsense" aria-label="Advertisement slot 1">Ad Content 1</div>
+      <div class="adspace adsatara" aria-label="Advertisement slot 2">Ad Content 2</div>
+    </section>
+
+    <section class="tools container" id="toolsSection">
+      <h2>Our Free Utilities</h2>
+      <div class="grid" id="toolsGrid">
+        <div class="card" data-tool="calculator">
+          <h3>Advanced Calculator</h3>
+          <p>Perform basic arithmetic operations instantly with a clean, responsive interface.</p>
+          <button class="open-tool btn">Open Calculator</button>
+        </div>
+
+        <div class="card" data-tool="bmi">
+          <h3>BMI Calculator</h3>
+          <p>Quickly calculate your Body Mass Index using your height (cm) and weight (kg).</p>
+          <button class="open-tool btn">Open BMI Tool</button>
+        </div>
+
+        <div class="card" data-tool="age">
+          <h3>Age Calculator</h3>
+          <p>Enter your birthdate to accurately determine your current age in years.</p>
+          <button class="open-tool btn">Open Age Tool</button>
+        </div>
+
+        <div class="card" data-tool="worldclock">
+          <h3>Local Time Clock</h3>
+          <p>View the current time for your specific timezone, updated in real-time.</p>
+          <button class="open-tool btn">Open Clock</button>
+        </div>
+
+        <div class="card" data-tool="image-to-pdf">
+            <h3>Image to PDF Converter</h3>
+            <p>Convert multiple images (JPG, PNG) into a single PDF document easily.</p>
+            <button class="open-tool btn">Open Image to PDF</button>
+        </div>
+
+        <div class="card" data-tool="favicon-generator">
+            <h3>Favicon Generator</h3>
+            <p>Create a favicon (.ico) from your images easily.</p>
+            <button class="open-tool btn">Generate Favicon</button>
+        </div>
+
+        <div class="card" data-tool="dummy-image-generator">
+            <h3>Dummy Image Generator</h3>
+            <p>Generate placeholder images with custom dimensions and text.</p>
+            <button class="open-tool btn">Generate Dummy Image</button>
+        </div>
+
+        <div class="card" data-tool="qr-code-generator">
+            <h3>QR Code Generator</h3>
+            <p>Create QR codes from any text or URL instantly.</p>
+            <button class="open-tool btn">Generate QR Code</button>
+        </div>
+
+        <div class="card" data-tool="screen-resolution">
+            <h3>My Screen Resolution</h3>
+            <p>Instantly find your current screen and viewport dimensions.</p>
+            <button class="open-tool btn">Check Resolution</button>
+        </div>
+
+        <div class="card" data-tool="lorem-ipsum-generator">
+            <h3>Lorem Ipsum Generator</h3>
+            <p>Generate placeholder text for your designs and layouts.</p>
+            <button class="open-tool btn">Generate Lorem Ipsum</button>
+        </div>
+
+        <div class="card" data-tool="js-css-minifier">
+            <h3>JS & CSS Minifier</h3>
+            <p>Minify JavaScript and CSS code to reduce file size.</p>
+            <button class="open-tool btn">Minify Code</button>
+        </div>
+
+        <div class="card" data-tool="js-css-unminifier">
+            <h3>JS & CSS Unminifier</h3>
+            <p>Format minified JavaScript and CSS code for readability.</p>
+            <button class="open-tool btn">Unminify Code</button>
+        </div>
+
+      </div>
+
+      <div id="toolArea" class="tool-area" aria-live="polite"></div>
+    </section>
+
+    <section class="ads container">
+      <div class="adspace adsense" aria-label="Advertisement slot 3">Ad Content 3</div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>
+        <a href="#" data-page="about">About Us</a>
+        •
+        <a href="#" data-page="privacy">Privacy Policy</a>
+        •
+        <a href="#" data-page="terms">Terms of Service</a>
+      </p>
+      <p>Interested in advertising with us? Reach out: <a href="mailto:darkoceanai0@gmail.com" rel="noopener noreferrer">darkoceanai0@gmail.com</a></p>
+      <small>© 2023 Quick Tools • Fast & Minimal. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <template id="calculatorTpl">
+    <div class="tool-panel">
+      <h3>Calculator</h3>
+      <input id="calcDisplay" class="calc-display" readonly value="0" aria-live="assertive" />
+      <div class="calc-pad">
+        <button class="calc-btn" data-val="7" aria-label="Seven">7</button>
+        <button class="calc-btn" data-val="8" aria-label="Eight">8</button>
+        <button class="calc-btn" data-val="9" aria-label="Nine">9</button>
+        <button class="calc-btn op" data-val="/" aria-label="Divide">÷</button>
+
+        <button class="calc-btn" data-val="4" aria-label="Four">4</button>
+        <button class="calc-btn" data-val="5" aria-label="Five">5</button>
+        <button class="calc-btn" data-val="6" aria-label="Six">6</button>
+        <button class="calc-btn op" data-val="*" aria-label="Multiply">×</button>
+
+        <button class="calc-btn" data-val="1" aria-label="One">1</button>
+        <button class="calc-btn" data-val="2" aria-label="Two">2</button>
+        <button class="calc-btn" data-val="3" aria-label="Three">3</button>
+        <button class="calc-btn op" data-val="-" aria-label="Subtract">−</button>
+
+        <button class="calc-btn" data-val="0" aria-label="Zero">0</button>
+        <button class="calc-btn" data-val="." aria-label="Decimal point">.</button>
+        <button class="calc-btn" id="calcEqual" data-val="=" aria-label="Equals">=</button>
+        <button class="calc-btn op" data-val="+" aria-label="Add">+</button>
+
+        <button class="calc-btn wide" id="calcClear" data-val="C" aria-label="Clear">C</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="bmiTpl">
+    <div class="tool-panel">
+      <h3>BMI Calculator</h3>
+      <label for="bmiWeight">Weight (kg)</label>
+        <input id="bmiWeight" type="number" placeholder="e.g., 70" min="0" aria-required="true" />
+      <label for="bmiHeight">Height (cm)</label>
+        <input id="bmiHeight" type="number" placeholder="e.g., 175" min="0" aria-required="true" />
+      <button id="bmiCalc" class="btn">Calculate BMI</button>
+      <div id="bmiResult" class="result" role="status"></div>
+    </div>
+  </template>
+
+  <template id="ageTpl">
+    <div class="tool-panel">
+      <h3>Age Calculator</h3>
+      <label for="birthDate">Birthdate</label>
+        <input id="birthDate" type="date" aria-required="true" />
+      <button id="ageCalc" class="btn">Get Age</button>
+      <div id="ageResult" class="result" role="status"></div>
+    </div>
+  </template>
+
+  <template id="clockTpl">
+    <div class="tool-panel">
+      <h3>Local Time</h3>
+      <div id="localTime" class="clock" aria-live="polite"></div>
+      <small>Time updates every second based on your device's timezone.</small>
+    </div>
+  </template>
+
+  <template id="imageToPdfTpl">
+    <div class="tool-panel image-to-pdf-tool">
+        <h3>Image to PDF Converter</h3>
+        <p>Select multiple images to combine them into a single PDF.</p>
+        <input type="file" id="imageInput" accept="image/*" multiple aria-label="Upload Images" />
+        <div id="imagePreview" class="image-preview-container"></div>
+        <button id="convertPdfBtn" class="btn large" disabled>Convert to PDF</button>
+        <div id="pdfResult" class="result" role="status"></div>
+    </div>
+  </template>
+
+  <template id="faviconGeneratorTpl">
+    <div class="tool-panel favicon-generator-tool">
+      <h3>Favicon Generator</h3>
+      <p>Upload an image (JPG, PNG) to convert it into a favicon (.ico).</p>
+      <input type="file" id="faviconImageInput" accept="image/png, image/jpeg" aria-label="Upload Image for Favicon" />
+      <label for="faviconSize">Favicon Size (px)</label>
+      <input type="number" id="faviconSize" value="32" min="16" max="256" step="16" aria-label="Favicon size in pixels" />
+      <button id="generateFaviconBtn" class="btn large" disabled>Generate Favicon</button>
+      <div id="faviconResult" class="result" role="status"></div>
+      <div id="faviconPreview" class="image-preview-container"></div>
+    </div>
+  </template>
+
+  <template id="dummyImageGeneratorTpl">
+    <div class="tool-panel dummy-image-generator-tool">
+      <h3>Dummy Image Generator</h3>
+      <p>Generate a placeholder image with custom dimensions and optional text.</p>
+      <label for="dummyImageWidth">Width (px)</label>
+      <input type="number" id="dummyImageWidth" value="300" min="50" max="2000" aria-label="Image width in pixels" />
+      <label for="dummyImageHeight">Height (px)</label>
+      <input type="number" id="dummyImageHeight" value="200" min="50" max="2000" aria-label="Image height in pixels" />
+      <label for="dummyImageText">Text (optional)</label>
+      <input type="text" id="dummyImageText" placeholder="e.g., Placeholder" aria-label="Optional text for the dummy image" />
+      <label for="dummyImageBgColor">Background Color (Hex or Name)</label>
+      <input type="text" id="dummyImageBgColor" value="#cccccc" placeholder="#RRGGBB or 'blue'" aria-label="Background color for the dummy image" />
+      <label for="dummyImageTextColor">Text Color (Hex or Name)</label>
+      <input type="text" id="dummyImageTextColor" value="#333333" placeholder="#RRGGBB or 'white'" aria-label="Text color for the dummy image" />
+      <button id="generateDummyImageBtn" class="btn large">Generate Image</button>
+      <div id="dummyImageResult" class="result" role="status"></div>
+      <div id="dummyImageOutput"></div>
+    </div>
+  </template>
+
+  <template id="qrCodeGeneratorTpl">
+    <div class="tool-panel qr-code-generator-tool">
+      <h3>QR Code Generator</h3>
+      <p>Enter text or a URL to generate a QR code.</p>
+      <label for="qrCodeInput">Text or URL</label>
+      <textarea id="qrCodeInput" rows="4" placeholder="Type your text or paste a URL here..." aria-required="true"></textarea>
+      <button id="generateQrCodeBtn" class="btn large" disabled>Generate QR Code</button>
+      <div id="qrCodeResult" class="result" role="status"></div>
+      <div id="qrCodeOutput" style="text-align: center; margin-top: 20px;"></div>
+    </div>
+  </template>
+
+  <template id="screenResolutionTpl">
+    <div class="tool-panel screen-resolution-tool">
+      <h3>My Screen Resolution</h3>
+      <div id="screenResolutionResult" class="result" role="status">
+        <p><strong>Screen Width:</strong> <span id="screenWidth"></span> px</p>
+        <p><strong>Screen Height:</strong> <span id="screenHeight"></span> px</p>
+        <p><strong>Available Width (Viewport):</strong> <span id="viewportWidth"></span> px</p>
+        <p><strong>Available Height (Viewport):</strong> <span id="viewportHeight"></span> px</p>
+        <small>These values reflect your device's current screen and browser viewport dimensions.</small>
+      </div>
+    </div>
+  </template>
+
+  <template id="loremIpsumGeneratorTpl">
+    <div class="tool-panel lorem-ipsum-generator-tool">
+      <h3>Lorem Ipsum Generator</h3>
+      <p>Generate paragraphs of Lorem Ipsum placeholder text.</p>
+      <label for="loremIpsumParagraphs">Number of Paragraphs</label>
+      <input type="number" id="loremIpsumParagraphs" value="3" min="1" max="50" aria-label="Number of paragraphs to generate" />
+      <button id="generateLoremIpsumBtn" class="btn large">Generate Text</button>
+      <div id="loremIpsumResult" class="result" role="status"></div>
+      <button id="copyLoremIpsumBtn" class="btn" style="margin-top: 15px; display: none;">Copy to Clipboard</button>
+    </div>
+  </template>
+
+  <template id="jsCssMinifierTpl">
+    <div class="tool-panel js-css-minifier-tool">
+      <h3>JS & CSS Minifier</h3>
+      <p>Paste your JavaScript or CSS code below to minify it.</p>
+      <label for="minifierInput">Code to Minify</label>
+      <textarea id="minifierInput" rows="10" placeholder="Paste your JS or CSS code here..." aria-required="true"></textarea>
+      <button id="minifyBtn" class="btn large" disabled>Minify Code</button>
+      <div id="minifierResult" class="result" role="status"></div>
+      <button id="copyMinifiedBtn" class="btn" style="margin-top: 15px; display: none;">Copy to Clipboard</button>
+    </div>
+  </template>
+
+  <template id="jsCssUnminifierTpl">
+    <div class="tool-panel js-css-unminifier-tool">
+      <h3>JS & CSS Unminifier / Beautifier</h3>
+      <p>Paste your minified JavaScript or CSS code to unminify/beautify it.</p>
+      <label for="unminifierInput">Code to Unminify</label>
+      <textarea id="unminifierInput" rows="10" placeholder="Paste your minified JS or CSS code here..." aria-required="true"></textarea>
+      <button id="unminifyBtn" class="btn large" disabled>Unminify Code</button>
+      <div id="unminifierResult" class="result" role="status"></div>
+      <button id="copyUnminifiedBtn" class="btn" style="margin-top: 15px; display: none;">Copy to Clipboard</button>
+    </div>
+  </template>
+
+  <!-- Legal Pages Templates -->
+  <template id="aboutTpl">
+    <div class="tool-panel legal-page">
+      <h3>About Quick Tools</h3>
+      <p>Welcome to Quick Tools, your go-to destination for fast, minimal, and free web utilities. Our mission is to provide a collection of essential online calculators and tools that are easy to use, lightning-fast, and completely accessible on any device.</p>
+      <p>In a world full of bloated software and complex applications, we believe in simplicity. Quick Tools offers a streamlined experience, allowing you to get the job done without unnecessary reloads or distractions. Whether you need to calculate your BMI, generate a QR code, or convert images to PDF, our tools are designed to be intuitive and efficient.</p>
+      <p>We are constantly working to expand our collection of utilities, ensuring that you always have access to the most useful and up-to-date web tools. Your feedback is important to us, so feel free to reach out with suggestions or comments.</p>
+      <p>Thank you for choosing Quick Tools!</p>
+    </div>
+  </template>
+
+  <template id="privacyTpl">
+    <div class="tool-panel legal-page">
+      <h3>Privacy Policy for Quick Tools</h3>
+      <p>At Quick Tools, accessible from yourdomain.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Quick Tools and how we use it.</p>
+
+      <h4>Consent</h4>
+      <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+
+      <h4>Information We Collect</h4>
+      <p>We do not collect any personal identifying information from our users. All tools operate client-side in your browser, meaning that any data you input (e.g., numbers for a calculator, text for a QR code, images for PDF conversion) is processed directly on your device and is never sent to our servers.</p>
+      <p>We may use third-party advertising partners (like Google AdSense, Adsterra, Hilltop Ads) to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+
+      <h4>Log Files</h4>
+      <p>Quick Tools follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
+
+      <h4>Cookies and Web Beacons</h4>
+      <p>Like any other website, Quick Tools uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+      <p>For more general information on cookies, please read <a href="https://www.privacypolicyonline.com/what-are-cookies/" target="_blank" rel="noopener noreferrer">"What Are Cookies" from Cookie Consent</a>.</p>
+
+      <h4>Advertising Partners Privacy Policies</h4>
+      <p>You may consult this list to find the Privacy Policy for each of the advertising partners of Quick Tools.</p>
+      <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on Quick Tools, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
+      <p>Note that Quick Tools has no access to or control over these cookies that are used by third-party advertisers.</p>
+
+      <h4>Third Party Privacy Policies</h4>
+      <p>Quick Tools's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+      <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
+
+      <h4>Children's Information</h4>
+      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+      <p>Quick Tools does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+    </div>
+  </template>
+
+  <template id="termsTpl">
+    <div class="tool-panel legal-page">
+      <h3>Terms of Service for Quick Tools</h3>
+      <p>Welcome to Quick Tools! These terms and conditions outline the rules and regulations for the use of Quick Tools's Website, located at yourdomain.com.</p>
+
+      <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Quick Tools if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+      <h4>License</h4>
+      <p>Unless otherwise stated, Quick Tools and/or its licensors own the intellectual property rights for all material on Quick Tools. All intellectual property rights are reserved. You may access this from Quick Tools for your own personal use subjected to restrictions set in these terms and conditions.</p>
+
+      <p>You must not:</p>
+      <ul>
+        <li>Republish material from Quick Tools</li>
+        <li>Sell, rent or sub-license material from Quick Tools</li>
+        <li>Reproduce, duplicate or copy material from Quick Tools</li>
+        <li>Redistribute content from Quick Tools</li>
+      </ul>
+      <p>This Agreement shall begin on the date hereof.</p>
+
+      <h4>User Comments</h4>
+      <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Quick Tools does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Quick Tools,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Quick Tools shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+      <p>Quick Tools reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+
+      <p>You warrant and represent that:</p>
+      <ul>
+        <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
+        <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
+        <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy</li>
+        <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
+      </ul>
+      <p>You hereby grant Quick Tools a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.</p>
+
+      <h4>Hyperlinking to our Content</h4>
+      <p>The following organizations may link to our Website without prior written approval:</p>
+      <ul>
+        <li>Government agencies;</li>
+        <li>Search engines;</li>
+        <li>News organizations;</li>
+        <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
+        <li>System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.</li>
+      </ul>
+      <p>These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party’s site.</p>
+
+      <p>We may consider and approve other link requests from the following types of organizations:</p>
+      <ul>
+        <li>commonly-known consumer and/or business information sources;</li>
+        <li>dot.com community sites;</li>
+        <li>associations or other groups representing charities;</li>
+        <li>online directory distributors;</li>
+        <li>internet portals;</li>
+        <li>accounting, law and consulting firms; and</li>
+        <li>educational institutions and trade associations.</li>
+      </ul>
+      <p>We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of Quick Tools; and (d) the link is in the context of general resource information.</p>
+
+      <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to darkoceanai0@gmail.com. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait for 2-3 weeks for a response.</p>
+
+      <h4>iFrames</h4>
+      <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
+
+      <h4>Content Liability</h4>
+      <p>We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+
+      <h4>Reservation of Rights</h4>
+      <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and its linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
+
+      <h4>Removal of links from our website</h4>
+      <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
+
+      <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
+
+      <h4>Disclaimer</h4>
+      <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+      <ul>
+        <li>limit or exclude our or your liability for death or personal injury;</li>
+        <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+        <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+        <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+      </ul>
+      <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
+      <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify-css.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
